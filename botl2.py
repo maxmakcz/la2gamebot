@@ -106,24 +106,23 @@ async def rb1(message: types.Message):
 @dp.message_handler(commands=['res'])
 @dp.throttled(rate=1)
 async def craftm(message: types.Message):
-    con = sq.connect("game.db")
-    con.row_factory = sq.Row
-    cur = con.cursor()
     user_id = message.from_user.id
     cur.execute(f"SELECT id FROM players WHERE id = {user_id} ")
     data = cur.fetchone()
     if data is not None:
         cur.execute(f"SELECT minirb,dion,giran,aden,srec,Varnish FROM players WHERE id = {user_id}")
         rows = cur.fetchone()
-        await message.answer(fmt.text(fmt.text('\n<b>Ресурсы:</b>'
-                                               '         \n\U0001F9F1Iron Ore:',fmt.hbold(rows['minirb']),
-                                               '         \n\U0001F9FFBlue Gemstone:',fmt.hbold(rows['dion']),
-                                                        '\n\U0001F943Varnish:',fmt.hbold(rows['Varnish']),
+        for i in rows:
+            msg = fmt.text(fmt.text('\n<b>Ресурсы:</b>'
+                                               '         \n\U0001F9F1Iron Ore:',fmt.hbold(item[0]),
+                                               '         \n\U0001F9FFBlue Gemstone:',fmt.hbold(item[1]),
+                                                        '\n\U0001F943Varnish:',fmt.hbold(item[2]),
                                                '\n\n<b>Рецепты:</b>',
-                                                         '\n(B)\U0001F4DC',(rows['giran']),
-                                                         '\n(A)\U0001F4DC',(rows['aden']),
-                                                         '\n(S)\U0001F4DC',(rows['srec'])
+                                                         '\n(B)\U0001F4DC',(item[3]),
+                                                         '\n(A)\U0001F4DC',(item[4]),
+                                                         '\n(S)\U0001F4DC',(item[5])
                                                )),parse_mode= "html")
+        await message.answer(msg)
 @dp.message_handler(Text(equals="\U0001F377ХП банка\U0001F377(300)"))
 @dp.throttled(rate=1)
 async def hpbanka(message: types.Message):
