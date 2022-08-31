@@ -54,6 +54,8 @@ async def start(message: types.Message):
     nick = message.from_user.username
     df = "Demon Fang(D) +"
     bs = "Brigandine Set(D) +"
+    rec = "0"
+    rec2 = "0"
     cur.execute(f"SELECT id FROM players WHERE id = {user_id} ")
     data = cur.fetchone()
     if data is None:
@@ -64,7 +66,7 @@ async def start(message: types.Message):
                     f' maxhp , zat2 ,profa ,buff ,srec , Varnish ,rbfight ,mp ,maxmp ,hpbanka ,mpbanka ,mob11 ,mob12 ,dinoq ,nosq ,aliq ,bufq ,lionq ,bearq ,mobr ,mobra)  VALUES (%s,%s,0,1,1,5,0,140,0,0,10000'
                           f',50000,150000,0,0,0,0,600,2200,12000,200000,'
                           f'%s,0,0,0,2000,3600,5000,400000,6400,10000,11000,13000,'
-                          f'%s,0,0,100,0,"0",0,"0",16000,16000,0,0,0,0,0,0,0,0)',(user_id,nick,df,bs))
+                          f'%s,0,0,100,0,%s,0,%s,16000,16000,0,0,0,0,0,0,0,0)',(user_id,nick,df,bs,rec,rec2))
         con.commit()
     else:
         await message.answer('Вы уже зарегистрированы')
