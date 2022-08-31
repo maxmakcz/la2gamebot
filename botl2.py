@@ -1000,8 +1000,6 @@ async def maxhp (message: types.Message):
 @dp.message_handler(commands='top')
 @dp.throttled(rate=1)
 async def top (message: types.Message):
-    con = sq.connect("game.db")
-    cur = con.cursor()
     cur.execute(f"SELECT nick,profa,weapon,zat,armor,zat2,tochkar,hpxp FROM players ORDER BY zat DESC LIMIT 5")
     result = cur.fetchall()
     for i, item in enumerate(result):
@@ -1493,7 +1491,6 @@ async def pal444(message: types.Message):
 @dp.message_handler(commands='quest')
 @dp.throttled(rate=1)
 async def quest (message: types.Message):
-    con.row_factory = sq.Row
     user_id = message.from_user.id
     cur.execute(f"SELECT id FROM players WHERE id = {user_id} ")
     data = cur.fetchone()
