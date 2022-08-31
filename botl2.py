@@ -58,7 +58,7 @@ async def start(message: types.Message):
         await message.answer('Вы зарегистрированы')
         cur.execute(f'INSERT INTO players(id ,nick , zat ,Krit ,def  ,atk  ,atkxp ,hp  ,hpxp  ,'
                     f'xp  ,RB1  ,RB2  ,RB3  , tochkab , tochkam , tochkar , minirb  , mob1 ,mob2  , mob3 , minirb2 , Weapon , dion ,'
-                    f' giran , aden ,mob4 , mob5 i, mob6 , minirb3 , mob7 , mob8 , mob9 ,mob10 , armor , gold , defxp ,'
+                    f' giran , aden ,mob4 , mob5, mob6 , minirb3 , mob7 , mob8 , mob9 ,mob10 , armor , gold , defxp ,'
                     f' maxhp , zat2 ,profa ,buff ,srec , Varnish ,rbfight ,mp ,maxmp ,hpbanka ,mpbanka ,mob11 ,mob12 ,dinoq ,nosq ,aliq ,bufq ,lionq ,bearq ,mobr ,mobra)  VALUES ("{user_id}","{nick}",0,1,1,5,0,140,0,0,10000'
                           f',50000,150000,0,0,0,0,600,2200,12000,200000,'
                           f'"Demon Fang(D) +",0,0,0,2000,3600,5000,400000,6400,10000,11000,13000,'
