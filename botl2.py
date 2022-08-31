@@ -1493,6 +1493,7 @@ async def pal444(message: types.Message):
 @dp.message_handler(commands='quest')
 @dp.throttled(rate=1)
 async def quest (message: types.Message):
+    con.row_factory = sq.Row
     user_id = message.from_user.id
     cur.execute(f"SELECT id FROM players WHERE id = {user_id} ")
     data = cur.fetchone()
