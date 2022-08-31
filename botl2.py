@@ -113,7 +113,7 @@ async def craftm(message: types.Message):
         cur.execute(f"SELECT minirb,dion,giran,aden,srec,Varnish FROM players WHERE id = {user_id}")
         rows = cur.fetchone()
         for i in rows:
-            msg = fmt.text(fmt.text('\n<b>Ресурсы:</b>'
+            msg = (fmt.text(fmt.text('\n<b>Ресурсы:</b>'
                                                '         \n\U0001F9F1Iron Ore:',fmt.hbold(item[0]),
                                                '         \n\U0001F9FFBlue Gemstone:',fmt.hbold(item[1]),
                                                         '\n\U0001F943Varnish:',fmt.hbold(item[2]),
